@@ -1,0 +1,84 @@
+program BattailleNaval;
+
+uses crt;
+
+type LaMap = array [1..10, 1..10] of Char;
+
+//procedure AffichageDeLaMap(var map:TableauDesCaracteres);
+
+var i, a, Remplisage :integer;
+var MapPrincipal : LaMap;
+function AffichageCordination (f : integer):Char;
+
+begin
+    case f of 
+        1 : AffichageCordination:=' ';
+        2 : AffichageCordination:='A';
+        3 : AffichageCordination:='B';
+        4 : AffichageCordination:='C';
+        5 : AffichageCordination:='D';
+        6 : AffichageCordination:='E';
+        7 : AffichageCordination:='F';
+        8 : AffichageCordination:='G'; 
+        9 : AffichageCordination:='H';
+        10 : AffichageCordination:='I';
+    end;
+end;
+
+function AffichageCordination2 (f : integer):Char;
+
+begin
+    case f of 
+        1 : AffichageCordination2:=' ';
+        2 : AffichageCordination2:='1';
+        3 : AffichageCordination2:='2';
+        4 : AffichageCordination2:='3';
+        5 : AffichageCordination2:='4';
+        6 : AffichageCordination2:='5';
+        7 : AffichageCordination2:='6';
+        8 : AffichageCordination2:='7'; 
+        9 : AffichageCordination2:='8';
+        10 : AffichageCordination2:='9';
+    end;
+end;
+
+BEGIN
+    clrscr;
+    i := 1;
+    a := 1;
+    gotoxy(5,1);
+
+    for i:=1 to 10 do
+    begin
+        for a:=1 to 10 do
+        begin
+            gotoxy(i,a);
+            MapPrincipal [i,a]:='-';
+            if MapPrincipal[i,a]='-' then
+                textcolor(green)
+            else if MapPrincipal[i,a]='X' then
+                textcolor(blue)
+            else if MapPrincipal[i,a]='o' then
+                textcolor(6)
+            else
+                textcolor(8);
+               
+            write (MapPrincipal[i,a]);
+        end;
+    end;
+
+    for i := 1 to 10 do
+    begin
+        MapPrincipal[i,1]:=AffichageCordination(i);
+        gotoxy(i,1);
+        textcolor(2);
+        write(MapPrincipal[i,1]);
+
+        MapPrincipal[1,i]:=AffichageCordination2(i);
+        gotoxy(1,i);
+        textcolor(2);
+        writeln(MapPrincipal[1,i]);
+    end;
+
+readln;
+END.
